@@ -3,5 +3,9 @@
     "tailwindcss": "^3.4.0",
     "dev":"npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
     
+  },
+  "scripts": {
+    "build:css": "tailwindcss build src/styles.css -o dist/output.css",
+    "watch:css": "tailwindcss build src/styles.css -o dist/output.css --watch"
   }
 }
