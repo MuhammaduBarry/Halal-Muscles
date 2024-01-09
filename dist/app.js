@@ -32,5 +32,7 @@ const weatherIcons = () => {
 };
 // Dom information
 const weatherDomInfo = (dataWeather) => {
- const weatherSizing = ['bg-cover', 'bg-center', 'h-screen']
+ const weatherSizing = ['bg-cover', 'bg-center', 'h-screen', "overflow-x-hidden", "overflow-y-hidden"]
 };
+
+
