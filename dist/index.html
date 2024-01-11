@@ -11,26 +11,32 @@
 </head>
 
 <body class="bg-black">
-
     <div class="flex justify-end m-4">
-        <form class=" flex items-center">
-            <label for="default-search" class="mb-2 text-sm font-medium sr-only ">Search</label>
+        <div class=" flex items-center">
             <div class="flex items-center">
-                <input type="search" id="default-search"
+                <input type="text" id="default-search"
                     class=" w-full p-2 ps-10 text-sm text-white border-2 border-white rounded-lg bg-black placeholder-white caret-white focus:outline-none focus:ring-0 focus:border-white"
                     placeholder="Search " required autocomplete="off">
-                <button type="submit" class=" font-medium rounded-lg text-sm px-4 py-2 text-white ">
+                <button type="submit" class=" font-medium rounded-lg text-sm px-4 py-2 text-white " id="submit-button">
                     <i class="bi bi-arrow-right-square text-4xl "></i>
                 </button>
             </div>
-        </form>
+        </div>
     </div>
-    <div class="Current-Weather-Container">
+
+
+    <div
+        class="Current-Weather-Container ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-8 w-72 m-auto">
         <div class="current-Weather">
 
         </div>
     </div>
 
+    <div class="Forecast-Weather-Container">
+        <div class="Forecast-weather">
+
+        </div>
+    </div>
 
 </body>
 

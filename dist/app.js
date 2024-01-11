@@ -1,37 +1,56 @@
 // Getting Weather Api
 const weatherApi = async () => {
-  // Api Key - do not push
+  // Setting initial current value
+  const userInput = document.querySelector("#default-search");
+  let userInputValue = (userInput.value = "saudi arabia");
+  const submitButton = document.querySelector("#submit-button");
+  let userInputValueEncoded = encodeURIComponent(userInputValue);
 
+  const fetchingWeatherData = async () => {
+    // Api Key - do not push
+  
+    // Api
+    let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${userInputValueEncoded}&appid=${apiKey}&units=imperial`;
+    let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${userInputValueEncoded}&appid=${apiKey}&units=imperial`;
 
-  // Api
-  const urlWeather = `https://api.openweathermap.org/data/2.5/weather?lat=40.7128&lon=-74.0060&appid=${apiKey}&units=imperial`;
-  const urlForecast = `https://api.openweathermap.org/data/2.5/forecast?lat=40.79857&lon=-73.96659&appid=${apiKey}&units=imperial`;
-
-  // Fetching Api Data
-  try {
-    // Current Weather
-    const responseWeather = await fetch(urlWeather);
-    if (!responseWeather.ok) {
-      throw new Error("Failed to fetch current weather data");
+    // Fetching Api Data
+    try {
+      // Current Weather
+      const responseWeather = await fetch(urlWeather);
+      if (!responseWeather.ok) {
+        throw new Error("Failed to fetch current weather data");
+      }
+      const dataWeather = await responseWeather.json();
+      console.log(dataWeather);
+      weatherDisplayInfo(dataWeather);
+      // Forecast Weather
+      const responseForecast = await fetch(urlForecast);
+      if (!responseForecast.ok) {
+        throw new Error("Failed to fetch forecast weather data");
+      }
+      const dataForecast = await responseForecast.json();
+      console.log(dataForecast);
+    } catch (error) {
+      console.log("Error Please Fix It: ", error);
     }
-    const dataWeather = await responseWeather.json();
-    console.log(dataWeather);
-    weatherDisplayInfo(dataWeather);
-    // Forecast Weather
-    const responseForecast = await fetch(urlForecast);
-    if (!responseForecast.ok) {
-      throw new Error("Failed to fetch forecast weather data");
-    }
-    const dataForecast = await responseForecast.json();
-    console.log(dataForecast);
-  } catch (error) {
-    console.log("Error Please Fix It: ", error);
-  }
+  };
+
+  fetchingWeatherData();
+
+  // submit button not working tackling this tomorrow
+  submitButton.addEventListener("click", async () => {
+    const reset = await weatherDisplayInfo(dataWeather);
+    console.log(reset.currentWeatherContainer);
+    reset.currentWeatherContainer.innerText = " ";
+    userInputValue = userInput.value;
+    userInputValueEncoded = encodeURIComponent(userInputValue);
+
+    await fetchingWeatherData();
+  });
 };
 
 // Dom display information
-
-const weatherDisplayInfo = (data) => {
+const weatherDisplayInfo = async (data) => {
   // Icons for the dom
   const weatherIcons = () => {
     // sunny icon
@@ -56,6 +75,7 @@ const weatherDisplayInfo = (data) => {
 
     return { sunnyIcon, cloudyIcon, rainIcon, rainStormIcon, snowIcon };
   };
+
   // Receiving the icons
   const icons = weatherIcons();
 
@@ -70,10 +90,11 @@ const weatherDisplayInfo = (data) => {
   const currentFahrenheit = document.createElement("p");
   const currentDescription = document.createElement("p");
   const timeDisplay = document.createElement("p");
-
-  const currentDate = new Date(
+  // Displays The date
+  let currentDate = new Date(
     data.dt * 1000 + data.timezone * 1000
   ).toDateString();
+  // Tailwind css styles
   currentFahrenheitDegree.classList.add(
     "text-7xl",
     "text-white",
@@ -110,11 +131,13 @@ const weatherDisplayInfo = (data) => {
     "font-mono",
     "mt-2"
   );
+  // Adding current weather data
   currentFahrenheitDegree.innerText = `${Math.round(data.main.temp)}`;
   currentWeatherLocation.innerText = `${data.name}`;
   currentFahrenheit.innerText = "°F";
   currentDescription.innerText = `${data.weather[0].main} | ${data.weather[0].description}`;
   timeDisplay.innerText = currentDate;
+  // Appending current weather data
   currentWeatherContainer.appendChild(timeDisplay);
   currentWeather.appendChild(currentFahrenheit);
   currentWeather.appendChild(currentFahrenheitDegree);
@@ -122,8 +145,9 @@ const weatherDisplayInfo = (data) => {
   currentWeatherContainer.appendChild(currentWeather);
   currentWeatherContainer.appendChild(currentWeatherLocation);
   currentWeatherContainer.appendChild(currentDescription);
-  console.log(currentWeatherContainer);
-  console.log(currentDescription);
+
+  return { currentWeatherContainer };
 };
 
+// Call the weatherApi function
 weatherApi();
