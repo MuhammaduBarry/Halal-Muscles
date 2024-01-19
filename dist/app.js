@@ -61,7 +61,7 @@ const weatherDisplayInfo = async (data) => {
     const cloudyIcon = document.createElement("i");
     cloudyIcon.classList.add("bi", "bi-cloud");
 
-    // cloudy rain
+    // cloudy rain icon
     const rainIcon = document.createElement("i");
     rainIcon.classList.add("bi", "bi-cloud-rain");
 
@@ -72,6 +72,9 @@ const weatherDisplayInfo = async (data) => {
     // cloudy snow
     const snowIcon = document.createElement("i");
     snowIcon.classList.add("bi", "bi-cloud-snow");
+
+    // array icons
+    arrayIcons = [sunnyIcon,cloudyIcon, rainIcon, rainStormIcon, snowIcon]
 
     return { sunnyIcon, cloudyIcon, rainIcon, rainStormIcon, snowIcon };
   };
@@ -90,7 +93,7 @@ const weatherDisplayInfo = async (data) => {
 };
 
 const handleUserInput = async () => {
-  userInputValue = userInput.value = "saudi arabia";
+  userInputValue = userInput.value
   urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${userInputValue}&appid=${apiKey}&units=imperial`;
   try {
     const responseWeather = await fetch(urlWeather);
