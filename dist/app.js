@@ -14,13 +14,13 @@ const weatherApi = async () => {
     // Current Weather
     const responseWeather = await fetch(urlWeather);
     if (!responseWeather.ok) {
-      alert("try again or enter a different location")
+      alert("try again or enter a different location");
       throw new Error("Failed to fetch current weather data");
     }
     const dataWeather = await responseWeather.json();
     console.log(dataWeather);
     weatherDisplayInfo(dataWeather);
-    weatherIcons(dataWeather);
+    weatherIcons(dataWeather.weather[0].main);
     // Forecast Weather
     const responseForecast = await fetch(urlForecast);
     if (!responseForecast.ok) {
@@ -28,27 +28,23 @@ const weatherApi = async () => {
     }
     const dataForecast = await responseForecast.json();
     console.log(dataForecast);
+    console.log(dataForecast.list[2].main);
   } catch (error) {
     console.log("Error Please Fix It: ", error);
   }
 };
 
-const currentWeather = document.querySelector("#current-weather");
-const currentWeatherContainer = document.querySelector(
-  "#current-weather-container"
-);
-let currentFahrenheitDegree = document.querySelector(
-  "#current-fahrenheit-degree"
-);
-let currentWeatherLocation = document.querySelector(
-  "#current-weather-location"
-);
-let currentFahrenheit = document.querySelector("#current-fahrenheit");
-let currentDescription = document.querySelector("#current-description");
-let timeDisplay = document.querySelector("#time-display");
-
 // Dom display information
 const weatherDisplayInfo = (data) => {
+  let currentFahrenheitDegree = document.querySelector(
+    "#current-fahrenheit-degree"
+  );
+  let currentWeatherLocation = document.querySelector(
+    "#current-weather-location"
+  );
+  let currentFahrenheit = document.querySelector("#current-fahrenheit");
+  let currentDescription = document.querySelector("#current-description");
+  let timeDisplay = document.querySelector("#time-display");
   // Adding current weather data
   let currentDate = new Date(
     data.dt * 1000 + data.timezone * 1000
@@ -60,61 +56,68 @@ const weatherDisplayInfo = (data) => {
   timeDisplay.innerText = currentDate;
 };
 
+// Dom Forecast display information
+const forecastDisplayInfo = (data) => {};
 // Icons for the dom
 const weatherIcons = (data) => {
   // current icon
-  const currentIcon = document.querySelector("#current-icon");
+  const currentIcon = document.querySelector(".i-icons");
 
   // this switch statement handles and updates the icons ui
-  switch (data.weather[0].main) {
+  switch (data) {
     case "Mist":
-      currentIcon.className = "bi bi-cloud-fog text-white text-5xl m-4";
+      currentIcon.className = "i-icons bi bi-cloud-fog text-white text-5xl m-4";
       break;
-      case "Fog":
-      currentIcon.className = "bi bi-cloud-fog text-white text-5xl m-4";
+    case "Fog":
+      currentIcon.className = "i-icons bi bi-cloud-fog text-white text-5xl m-4";
       break;
     case "Snow":
-      currentIcon.className = "bi bi-cloud-snow text-white text-5xl m-4";
+      currentIcon.className =
+        "i-icons bi bi-cloud-snow text-white text-5xl m-4";
     case "Rain":
       if (data.weather[0].description === "light rain") {
         console.log("working");
-        currentIcon.className = "bi bi-cloud-drizzle text-white text-5xl m-4";
+        currentIcon.className =
+          "i-icons bi bi-cloud-drizzle text-white text-5xl m-4";
       } else if (
         data.weather[0].description === "heavy intensity rain" ||
         "very heavy rain" ||
         "extreme rain"
       ) {
         currentIcon.className =
-          "bi bi-cloud-rain-heavy text-white text-5xl m-4";
+          "i-icons bi bi-cloud-rain-heavy text-white text-5xl m-4";
       } else {
-        currentIcon.className = "bi bi-cloud-rain text-white text-5xl m-4";
+        currentIcon.className =
+          "i-icons bi bi-cloud-rain text-white text-5xl m-4";
       }
       break;
     case "Drizzle":
-      currentIcon.className = "bi bi-cloud-drizzle text-white text-5xl m-4";
+      currentIcon.className =
+        "i-icons bi bi-cloud-drizzle text-white text-5xl m-4";
       break;
     case "Thunderstorm":
       currentIcon.className =
-        "bi bi-cloud-lightning-rain text-white text-5xl m-4";
+        "i-icons bi bi-cloud-lightning-rain text-white text-5xl m-4";
       break;
     case "Clouds":
-      currentIcon.className = "bi bi-cloud text-white text-5xl m-4";
+      currentIcon.className = "i-icons bi bi-cloud text-white text-5xl m-4";
       break;
     case "Clear":
-      currentIcon.className = "bi bi-sun text-white text-5xl m-4";
+      currentIcon.className = "i-icons bi bi-sun text-white text-5xl m-4";
       break;
     case "Tornado":
-      currentIcon.className = "bi bi-hurricane text-white text-5xl m-4";
+      currentIcon.className = "i-icons bi bi-hurricane text-white text-5xl m-4";
       break;
     default:
-      currentIcon.className = "bi bi-cloud text-white text-5xl m-4";
-      console.log("could not find a icon sorry ;(")
+      currentIcon.className = "i-icons bi bi-cloud text-white text-5xl m-4";
+      console.log("could not find a icon sorry ;(");
   }
 };
 
 const handleUserInput = () => {
   userInputValue = userInput.value.toUpperCase();
   urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${userInputValue}&appid=${apiKey}&units=imperial`;
+  urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${userInputValue}&appid=${apiKey}&units=imperial`;
   weatherApi();
 };
 
