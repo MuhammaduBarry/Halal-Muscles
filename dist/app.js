@@ -9,30 +9,26 @@ let urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${userInputV
 let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${userInputValue}&appid=${apiKey}&units=imperial`;
 // Getting Weather Api
 const weatherApi = async () => {
-  const fetchingWeatherData = async () => {
-    // Fetching Api Data
-    try {
-      // Current Weather
-      const responseWeather = await fetch(urlWeather);
-      if (!responseWeather.ok) {
-        throw new Error("Failed to fetch current weather data");
-      }
-      const dataWeather = await responseWeather.json();
-      console.log(dataWeather);
-      weatherDisplayInfo(dataWeather);
-      // Forecast Weather
-      const responseForecast = await fetch(urlForecast);
-      if (!responseForecast.ok) {
-        throw new Error("Failed to fetch forecast weather data");
-      }
-      const dataForecast = await responseForecast.json();
-      console.log(dataForecast);
-    } catch (error) {
-      console.log("Error Please Fix It: ", error);
+  // Fetching Api Data
+  try {
+    // Current Weather
+    const responseWeather = await fetch(urlWeather);
+    if (!responseWeather.ok) {
+      throw new Error("Failed to fetch current weather data");
     }
-  };
-
-  await fetchingWeatherData();
+    const dataWeather = await responseWeather.json();
+    console.log(dataWeather);
+    weatherDisplayInfo(dataWeather);
+    // Forecast Weather
+    const responseForecast = await fetch(urlForecast);
+    if (!responseForecast.ok) {
+      throw new Error("Failed to fetch forecast weather data");
+    }
+    const dataForecast = await responseForecast.json();
+    console.log(dataForecast);
+  } catch (error) {
+    console.log("Error Please Fix It: ", error);
+  }
 };
 
 const currentWeather = document.querySelector("#current-weather");
@@ -50,7 +46,7 @@ let currentDescription = document.querySelector("#current-description");
 let timeDisplay = document.querySelector("#time-display");
 
 // Dom display information
-const weatherDisplayInfo = async (data) => {
+const weatherDisplayInfo = (data) => {
   // Icons for the dom
   const weatherIcons = () => {
     // sunny icon
@@ -89,29 +85,17 @@ const weatherDisplayInfo = async (data) => {
   timeDisplay.innerText = currentDate;
 };
 
-const handleUserInput = async () => {
+const handleUserInput = () => {
   userInputValue = userInput.value;
   urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${userInputValue}&appid=${apiKey}&units=imperial`;
-  try {
-    const responseWeather = await fetch(urlWeather);
-    if (!responseWeather.ok) {
-      throw new Error("Failed to fetch current weather data");
-    }
-    const dataWeather = await responseWeather.json();
-    console.log(dataWeather);
-    // Update the weather display with the new data
-    weatherDisplayInfo(dataWeather);
-  } catch (error) {
-    console.log("Error Please Fix It: ", error);
-  }
+  weatherApi();
 };
 
 submitButton.addEventListener("click", handleUserInput);
-submitButton.addEventListener("keypress", (e) => {
-  if (e.keyCode === 13) {
-    weatherDisplayInfo(dataWeather);
+userInput.addEventListener("keypress", (event) => {
+  if (event.keyCode === 13) {
+    handleUserInput();
   }
-  console.log("working");
 });
 
 // Call the weatherApi function
