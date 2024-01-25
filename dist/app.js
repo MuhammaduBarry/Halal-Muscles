@@ -74,26 +74,23 @@ const weatherDisplayInfo = async (data) => {
     snowIcon.classList.add("bi", "bi-cloud-snow");
 
     // array icons
-    arrayIcons = [sunnyIcon,cloudyIcon, rainIcon, rainStormIcon, snowIcon]
+    arrayIcons = [sunnyIcon, cloudyIcon, rainIcon, rainStormIcon, snowIcon];
 
     return { sunnyIcon, cloudyIcon, rainIcon, rainStormIcon, snowIcon };
   };
   // Adding current weather data
-  const getItems = (data) => {
-    let currentDate = new Date(
-      data.dt * 1000 + data.timezone * 1000
-    ).toDateString();
-    currentFahrenheitDegree.innerText = `${Math.round(data.main.temp)}`;
-    currentWeatherLocation.innerText = `${data.name}`;
-    currentFahrenheit.innerText = "°F";
-    currentDescription.innerText = `${data.weather[0].main} | ${data.weather[0].description}`;
-    timeDisplay.innerText = currentDate;
-  };
-  return getItems(data);
+  let currentDate = new Date(
+    data.dt * 1000 + data.timezone * 1000
+  ).toDateString();
+  currentFahrenheitDegree.innerText = `${Math.round(data.main.temp)}`;
+  currentWeatherLocation.innerText = `${data.name}`;
+  currentFahrenheit.innerText = "°F";
+  currentDescription.innerText = `${data.weather[0].main} | ${data.weather[0].description}`;
+  timeDisplay.innerText = currentDate;
 };
 
 const handleUserInput = async () => {
-  userInputValue = userInput.value
+  userInputValue = userInput.value;
   urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${userInputValue}&appid=${apiKey}&units=imperial`;
   try {
     const responseWeather = await fetch(urlWeather);
@@ -103,13 +100,19 @@ const handleUserInput = async () => {
     const dataWeather = await responseWeather.json();
     console.log(dataWeather);
     // Update the weather display with the new data
-    weatherDisplayInfo(dataWeather).getItems;
+    weatherDisplayInfo(dataWeather);
   } catch (error) {
     console.log("Error Please Fix It: ", error);
   }
 };
 
 submitButton.addEventListener("click", handleUserInput);
+submitButton.addEventListener("keypress", (e) => {
+  if (e.keyCode === 13) {
+    weatherDisplayInfo(dataWeather);
+  }
+  console.log("working");
+});
 
 // Call the weatherApi function
 weatherApi();
