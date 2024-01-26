@@ -27,13 +27,13 @@
 
 
     <!-- current weather container -->
-    <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-8 w-96 m-auto mb-8"
+    <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-8 w-96 m-auto mb-8 sm:p-4 sm:w-72 xsm:p-2 xsm:w-60"
         id="current-weather-container">
         <p class="text-gray-400 font-mono text-center mb-2 text-lg" id="time-display"></p>
-        <div class="flex flex-row-reverse items-center justify-center" id="current-weather">
+        <div class="flex flex-row-reverse items-center justify-center sm:w-40 sm:m-auto" id="current-weather">
             <p class="text-white items-start font-mono" id="current-fahrenheit"></p>
-            <h1 class="text-7xl text-white text-center font-mono" id="current-fahrenheit-degree"></h1>
-            <i class="i-icons bi bi-cloud text-white text-5xl m-4"></i>
+            <h1 class="text-7xl text-white text-center font-mono sm:text-6xl xsm:text-5xl" id="current-fahrenheit-degree"></h1>
+            <i class="i-icons bi bi-cloud text-white text-5xl m-4 xsm:text-3xl "></i>
         </div>
         <h3 class="text-gray-400 text-center font-mono mt-2" id="current-weather-location"></h3>
         <p class="text-gray-400 text-xl flex items-center text-center justify-center font-mono mt-2"
@@ -41,31 +41,31 @@
     </div>
 
     <!-- forecast weather container -->
-    <div class="Forecast-Weather-Container w-96 m-auto">
-        <div class="Forecast-weather flex items-center justify-center">
-            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-4 mx-4">
-                <p class="text-gray-400 font-mono text-center" id="second-day"></p>
-                <p class="text-white items-start font-mono" id="second-day-fahrenheit"></p>
+    <div class="Forecast-Weather-Container m-auto">
+        <div class="Forecast-weather flex items-center justify-center md:flex-wrap">
+            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-8 mx-4 text-center md:mb-4">
+                <p class="text-gray-400 font-mono" id="second-Time"></p>
+                <p class="text-white items-start font-mono" id="second-Time-fahrenheit"></p>
                 <p class="text-gray-400 font-mono" id="second-description"></p>
             </div>
-            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-4 mx-4">
-                <p class="text-gray-400 font-mono text-center" id="third-day"></p>
-                <p class="text-white items-start font-mono" id="third-day-fahrenheit"></p>
+            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-8 mx-4 text-center md:mb-4">
+                <p class="text-gray-400 font-mono text-center" id="third-Time"></p>
+                <p class="text-white items-start font-mono" id="third-Time-fahrenheit"></p>
                 <p class="text-gray-400 font-mono" id="third-description"></p>
             </div>
-            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-4 mx-4">
-                <p class="text-gray-400 font-mono text-center" id="fourth-day"></p>
-                <p class="text-white items-start font-mono" id="fourth-day-fahrenheit"></p>
+            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-8 mx-4 text-center md:mb-4">
+                <p class="text-gray-400 font-mono text-center" id="fourth-Time"></p>
+                <p class="text-white items-start font-mono" id="fourth-Time-fahrenheit"></p>
                 <p class="text-gray-400 font-mono" id="fourth-description"></p>
             </div>
-            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-4 mx-4">
-                <p class="text-gray-400 font-mono text-center" id="fifth-day"></p>
-                <p class="text-white items-start font-mono" id="fifth-day-fahrenheit"></p>
+            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-8 mx-4 text-center md:mb-4">
+                <p class="text-gray-400 font-mono text-center" id="fifth-Time"></p>
+                <p class="text-white items-start font-mono" id="fifth-Time-fahrenheit"></p>
                 <p class="text-gray-400 font-mono" id="fifth-description"></p>
             </div>
-            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-4 mx-4">
-                <p class="text-gray-400 font-mono text-center" id="sixth-day"></p>
-                <p class="text-white items-start font-mono" id="sixth-day-fahrenheit"></p>
+            <div class="ring-0 ring-gray-400 ring-offset-4 ring-offset-gray-100/5 rounded-lg p-8 mx-4 text-center md:mb-4">
+                <p class="text-gray-400 font-mono text-center" id="sixth-Time"></p>
+                <p class="text-white items-start font-mono" id="sixth-Time-fahrenheit"></p>
                 <p class="text-gray-400 font-mono" id="sixth-description"></p>
             </div>
         </div>

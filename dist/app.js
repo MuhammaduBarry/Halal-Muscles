@@ -58,37 +58,47 @@ const CurrentWeatherDisplayInfo = (data) => {
 // Dom Forecast display information
 const forecastDisplayInfo = (data) => {
   // forecast date tags
-  const secondDay = document.querySelector("#second-day");
-  const thirdDay = document.querySelector("#third-day");
-  const fourthDay = document.querySelector("#fourth-day");
-  const fifthDay = document.querySelector("#fifth-day");
-  const sixthDay = document.querySelector("#sixth-day");
+  let secondTime = document.querySelector("#second-Time");
+  let thirdTime = document.querySelector("#third-Time");
+  let fourthTime = document.querySelector("#fourth-Time");
+  let fifthTime = document.querySelector("#fifth-Time");
+  let sixthTime = document.querySelector("#sixth-Time");
 
   // forecast fahrenheit tags
-  const secondDayFahrenheit = document.querySelector("#second-day-fahrenheit");
-  const thirdDayFahrenheit = document.querySelector("#third-day-fahrenheit");
-  const fourthDayFahrenheit = document.querySelector("#fourth-day-fahrenheit");
-  const fifthDayFahrenheit = document.querySelector("#fifth-day-fahrenheit");
-  const sixthDayFahrenheit = document.querySelector("#sixth-day-fahrenheit");
+  let secondTimeFahrenheit = document.querySelector("#second-Time-fahrenheit");
+  let thirdTimeFahrenheit = document.querySelector("#third-Time-fahrenheit");
+  let fourthTimeFahrenheit = document.querySelector("#fourth-Time-fahrenheit");
+  let fifthTimeFahrenheit = document.querySelector("#fifth-Time-fahrenheit");
+  let sixthTimeFahrenheit = document.querySelector("#sixth-Time-fahrenheit");
 
   // forecast description tags
+  let secondDescription = document.querySelector("#second-description")
+  let thirdDescription = document.querySelector("#third-description")
+  let fourthDescription = document.querySelector("#fourth-description")
+  let fifthDescription = document.querySelector("#fifth-description")
+  let sixthDescription = document.querySelector("#sixth-description")
 
   // Adding forecast data
   // second
-  secondDay.innerText = data.list[1].dt_txt.split(" ")[0];
-  secondDayFahrenheit.innerText = `${data.list[1].main.temp} °F`
+  secondTime.innerText = data.list[1].dt_txt;
+  secondTimeFahrenheit.innerText = `${data.list[3].main.temp} °F`
+  secondDescription.innerText = data.list[3].weather[0].description
   // third
-  thirdDay.innerText = data.list[9].dt_txt.split(" ")[0]
-  thirdDayFahrenheit.innerText = `${data.list[9].main.temp} °F`
+  thirdTime.innerText = data.list[9].dt_txt
+  thirdTimeFahrenheit.innerText = `${data.list[9].main.temp} °F`
+  thirdDescription.innerText = data.list[9].weather[0].description
   // fourth
-  fourthDay.innerText = data.list[17].dt_txt.split(" ")[0]
-  fourthDayFahrenheit.innerText = `${data.list[17].main.temp} °F`
+  fourthTime.innerText = data.list[17].dt_txt
+  fourthTimeFahrenheit.innerText = `${data.list[17].main.temp} °F`
+  fourthDescription.innerText = data.list[17].weather[0].description
   // fifth
-  fifthDay.innerText = data.list[25].dt_txt.split(" ")[0]
-  fifthDayFahrenheit.innerText = `${data.list[25].main.temp} °F`
+  fifthTime.innerText = data.list[25].dt_txt
+  fifthTimeFahrenheit.innerText = `${data.list[25].main.temp} °F`
+  fifthDescription.innerText = data.list[25].weather[0].description
   // sixth
-  sixthDay.innerText = data.list[33].dt_txt.split(" ")[0]
-  sixthDayFahrenheit.innerText = `${data.list[33].main.temp} °F`
+  sixthTime.innerText = data.list[33].dt_txt
+  sixthTimeFahrenheit.innerText = `${data.list[33].main.temp} °F`
+  sixthDescription.innerText = data.list[33].weather[0].description
 };
 // Icons for the dom
 const weatherIcons = (data) => {
