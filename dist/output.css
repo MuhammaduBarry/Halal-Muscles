@@ -1722,14 +1722,6 @@ input:checked + .toggle-bg {
 }
 
 @media (max-width: 281px) {
-  .xsm\:w-6 {
-    width: 1.5rem;
-  }
-
-  .xsm\:w-64 {
-    width: 16rem;
-  }
-
   .xsm\:w-60 {
     width: 15rem;
   }
@@ -1746,20 +1738,6 @@ input:checked + .toggle-bg {
   .xsm\:text-5xl {
     font-size: 3rem;
     line-height: 1;
-  }
-
-  .xsm\:text-red-500 {
-    --tw-text-opacity: 1;
-    color: rgb(240 82 82 / var(--tw-text-opacity));
-  }
-}
-
-@media (max-width: 395px) {
-  @media (max-width: 281px) {
-    .sm\:xsm\:text-5xl {
-      font-size: 3rem;
-      line-height: 1;
-    }
   }
 }
 

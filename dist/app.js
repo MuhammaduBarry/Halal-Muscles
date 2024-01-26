@@ -1,3 +1,4 @@
+
 // Setting initial current value
 const userInput = document.querySelector("#default-search");
 const submitButton = document.querySelector("#submit-button");
@@ -27,7 +28,7 @@ const weatherApi = async () => {
     }
     const dataForecast = await responseForecast.json();
     console.log(dataForecast);
-    forecastDisplayInfo(dataForecast)
+    forecastDisplayInfo(dataForecast);
   } catch (error) {
     console.log("Error Please Fix It:", error);
   }
@@ -72,33 +73,33 @@ const forecastDisplayInfo = (data) => {
   let sixthTimeFahrenheit = document.querySelector("#sixth-Time-fahrenheit");
 
   // forecast description tags
-  let secondDescription = document.querySelector("#second-description")
-  let thirdDescription = document.querySelector("#third-description")
-  let fourthDescription = document.querySelector("#fourth-description")
-  let fifthDescription = document.querySelector("#fifth-description")
-  let sixthDescription = document.querySelector("#sixth-description")
+  let secondDescription = document.querySelector("#second-description");
+  let thirdDescription = document.querySelector("#third-description");
+  let fourthDescription = document.querySelector("#fourth-description");
+  let fifthDescription = document.querySelector("#fifth-description");
+  let sixthDescription = document.querySelector("#sixth-description");
 
   // Adding forecast data
   // second
   secondTime.innerText = data.list[1].dt_txt;
-  secondTimeFahrenheit.innerText = `${data.list[3].main.temp} °F`
-  secondDescription.innerText = data.list[3].weather[0].description
+  secondTimeFahrenheit.innerText = `${data.list[3].main.temp} °F`;
+  secondDescription.innerText = data.list[3].weather[0].description;
   // third
-  thirdTime.innerText = data.list[9].dt_txt
-  thirdTimeFahrenheit.innerText = `${data.list[9].main.temp} °F`
-  thirdDescription.innerText = data.list[9].weather[0].description
+  thirdTime.innerText = data.list[9].dt_txt;
+  thirdTimeFahrenheit.innerText = `${data.list[9].main.temp} °F`;
+  thirdDescription.innerText = data.list[9].weather[0].description;
   // fourth
-  fourthTime.innerText = data.list[17].dt_txt
-  fourthTimeFahrenheit.innerText = `${data.list[17].main.temp} °F`
-  fourthDescription.innerText = data.list[17].weather[0].description
+  fourthTime.innerText = data.list[17].dt_txt;
+  fourthTimeFahrenheit.innerText = `${data.list[17].main.temp} °F`;
+  fourthDescription.innerText = data.list[17].weather[0].description;
   // fifth
-  fifthTime.innerText = data.list[25].dt_txt
-  fifthTimeFahrenheit.innerText = `${data.list[25].main.temp} °F`
-  fifthDescription.innerText = data.list[25].weather[0].description
+  fifthTime.innerText = data.list[25].dt_txt;
+  fifthTimeFahrenheit.innerText = `${data.list[25].main.temp} °F`;
+  fifthDescription.innerText = data.list[25].weather[0].description;
   // sixth
-  sixthTime.innerText = data.list[33].dt_txt
-  sixthTimeFahrenheit.innerText = `${data.list[33].main.temp} °F`
-  sixthDescription.innerText = data.list[33].weather[0].description
+  sixthTime.innerText = data.list[33].dt_txt;
+  sixthTimeFahrenheit.innerText = `${data.list[33].main.temp} °F`;
+  sixthDescription.innerText = data.list[33].weather[0].description;
 };
 // Icons for the dom
 const weatherIcons = (data) => {
